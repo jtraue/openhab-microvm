@@ -1,7 +1,7 @@
 {
   description = "NixOS in MicroVMs";
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/master";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.openhab.url = "gitlab:peterhoeg/openhab-flake";
   inputs.openhab.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -11,6 +11,14 @@
   outputs = { self, nixpkgs, microvm, openhab }:
     let
       system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          openhab.overlays.default
+        ];
+      };
+
     in
     {
       defaultPackage.${system} = self.packages.${system}.my-microvm;
@@ -23,18 +31,9 @@
         in
         config.microvm.runner.${hypervisor};
 
-      nixosConfigurations.my-microvm = nixpkgs.lib.nixosSystem (
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [
-              openhab.overlays.default
-            ];
-          };
-
-        in
+      nixosConfigurations.my-microvm = nixpkgs.lib.nixosSystem
         {
-          inherit system;
+          inherit pkgs system;
           modules = [
             openhab.nixosModules.openhab
             {
@@ -72,7 +71,6 @@
               };
             }
           ];
-        }
-      );
+        };
     };
 }
