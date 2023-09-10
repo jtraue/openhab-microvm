@@ -81,11 +81,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1694339894,
-        "narHash": "sha256-z8ligqRLWwHgk1t6Rbtmj123RqJz1SKPFKLeT/S16cA=",
+        "lastModified": 1694343060,
+        "narHash": "sha256-qUfdDDyud9gHNWK09DjwgnHMks1b/Jvn+Xim0srkomQ=",
         "owner": "peterhoeg",
         "repo": "openhab-flake",
-        "rev": "8393040090956cc3427ae6e4e9c3a0ae838bd7d8",
+        "rev": "f29cbbfc256a643759691906430fdbfd550e5953",
         "type": "gitlab"
       },
       "original": {
