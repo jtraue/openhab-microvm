@@ -39,7 +39,7 @@
             {
               services.openhab = {
                 enable = true;
-                configOnly = true;
+                # configOnly = true;
                 package = pkgs.openhab.openhab34;
               };
               system.stateVersion = "23.05";
@@ -51,6 +51,7 @@
               networking.hostName = "my-microvm";
               users.users.root.password = "";
               microvm = {
+                mem = 4096;
                 volumes = [{
                   mountPoint = "/var";
                   image = "var.img";
