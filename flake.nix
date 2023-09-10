@@ -55,7 +55,7 @@
                 volumes = [{
                   mountPoint = "/var";
                   image = "var.img";
-                  size = 256;
+                  size = 1024; # the default bindings take up a fair bit of space
                 }];
                 shares = [{
                   # use "virtiofs" for MicroVMs that are started by systemd
